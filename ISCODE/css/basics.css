@@ -1,0 +1,78 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: rgb(206, 156, 250);
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+}
+
+main {
+    background: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    padding: 2rem;
+    min-height: 100vh;
+    max-width: 600px;
+    margin: 0 auto;
+}
+.q {
+     background: #dbd6d6;
+    border-radius: 5px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
+    display: inline-block;
+    font-size: 1rem;
+    margin-top: 2rem;
+    padding: 0.25rem 0.5rem;
+    text-transform: uppercase; 
+}
+.arial {
+    font-family: 'Arial', sans-serif;
+}
+
+.roman {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.line-through {
+    text-decoration: line-through;
+}
+
+.text-orange{
+    color: orange;
+}
+.orangesquare{
+width: 100px;
+height: 100px;
+background-color: orange;
+}
+.text-purple{
+    color: purple;
+}
+.purplecircle{
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+background-color: rebeccapurple;
+}
+
+button{
+border: 0;
+background-color: rebeccapurple;
+color: #ffffff;
+cursor: pointer;
+padding: 0.5rem 3rem;
+}
+
+button:hover{
+    background-color: blueviolet;
+}
+
+button:active{
+    background-color: rgb(106, 35, 171);
+    color: black;
+}
