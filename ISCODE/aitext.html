@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 Not Found</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: #f0f0f0;
+      overflow: hidden;
+    }
+
+    .container {
+      position: relative;
+      width: 800px;
+      height: 500px;
+      background: linear-gradient(135deg, #ff6b9d, #c44569);
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      color: white;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    /* 气泡背景效果 */
+    .container::before,
+    .container::after,
+    .bubble {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      filter: blur(8px);
+      animation: float 8s infinite ease-in-out;
+    }
+
+    .container::before {
+      width: 200px;
+      height: 200px;
+      top: -80px;
+      left: -80px;
+      animation-delay: 0s;
+    }
+
+    .container::after {
+      width: 150px;
+      height: 150px;
+      bottom: -60px;
+      right: -60px;
+      animation-delay: 3s;
+    }
+
+    .bubble:nth-child(1) {
+      width: 120px;
+      height: 120px;
+      top: 30%;
+      right: 15%;
+      animation-delay: 1.5s;
+    }
+
+    .bubble:nth-child(2) {
+      width: 90px;
+      height: 90px;
+      bottom: 25%;
+      left: 20%;
+      animation-delay: 4.5s;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0) scale(1);
+      }
+      50% {
+        transform: translateY(-20px) scale(1.05);
+      }
+    }
+
+    /* 文字内容样式 */
+    .logo {
+      font-size: 0.9rem;
+      opacity: 0.8;
+      margin-bottom: 2rem;
+      letter-spacing: 1px;
+    }
+
+    .error-code {
+      font-size: 8rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .message {
+      font-size: 1rem;
+      opacity: 0.9;
+      margin-bottom: 2.5rem;
+      line-height: 1.6;
+      max-width: 500px;
+    }
+
+    .actions a {
+      color: white;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+      margin: 0 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .actions a:hover {
+      border-bottom-color: white;
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="logo">UiDesignDaily</div>
+    <div class="error-code">404</div>
+    <div class="message">
+      The link you clicked may be broken or the page may have been removed.
+    </div>
+    <div class="actions">
+      <a href="#">Visit the home page</a>
+      or
+      <a href="#">contact me</a>
+    </div>
+  </div>
+</body>
+</html>

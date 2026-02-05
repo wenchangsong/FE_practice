@@ -1,0 +1,18 @@
+main{
+    background: linear-gradient(rgb(159, 3, 159),rgb(253, 184, 195));
+}
+渐变
+
+
+ box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);阴影
+
+ h1{
+    font-size:10rem;
+    line-height: 1;
+    margin: 0;
+}消除文本上下间距
+
+background: white; border-radius: 50%; 
+把它们变成了300px×300px 的白色圆形。
+
+position: absolute; 让这两个圆形可以脱离文档流，进行精确的定位。
