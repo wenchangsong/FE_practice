@@ -1,24 +1,317 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
+    <!-- 视口适配，保证移动端显示正常 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>农业管理平台</title>
     <style>
-      h1{
-        background-color: gray;
-        display: inline;
-        box-shadow:0 0 10px 2px black;
-        border-radius: 10%;
-        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    padding: 1rem;  
-    font-size: medium;
-    margin: 2rem;
-    }
+        /* 全局样式重置，消除浏览器默认样式差异 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft Yahei", sans-serif;
+        }
+
+        /* 页面整体布局：侧边栏+主内容区 横向排列 */
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+
+        /* 侧边导航栏样式 */
+        .sidebar {
+            width: 220px;
+            background-color: #2d8659; /* 农业主题绿色 */
+            color: #fff;
+            padding: 20px 0;
+        }
+
+        .sidebar .logo {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 0 20px 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            margin-bottom: 20px;
+        }
+
+        .sidebar .nav-list {
+            list-style: none;
+        }
+
+        .sidebar .nav-item {
+            margin: 5px 0;
+        }
+
+        .sidebar .nav-link {
+            display: block;
+            padding: 12px 20px;
+            color: #fff;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        /* 导航项hover/选中状态 */
+        .sidebar .nav-link:hover,
+        .sidebar .nav-link.active {
+            background-color: rgba(255,255,255,0.2);
+        }
+
+        /* 主内容区域 */
+        .main-content {
+            flex: 1; /* 占满剩余宽度 */
+            background-color: #f5f7fa;
+            padding: 20px;
+            overflow-y: auto; /* 内容超出时滚动 */
+        }
+
+        /* 顶部栏样式 */
+        .main-content .header {
+            background-color: #fff;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .main-content .header-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* 表单卡片样式 */
+        .form-card {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+        }
+
+        .form-card .card-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        /* 表单布局：每行两个表单项（响应式） */
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -10px 15px;
+        }
+
+        .form-item {
+            flex: 0 0 50%; /* 默认每行2列 */
+            padding: 0 10px;
+            margin-bottom: 15px;
+        }
+
+        /* 小屏幕下改为单行 */
+        @media (max-width: 768px) {
+            .form-item {
+                flex: 0 0 100%;
+            }
+            .sidebar {
+                width: 60px; /* 移动端侧边栏收缩 */
+            }
+            .sidebar .logo span, .sidebar .nav-link span {
+                display: none; /* 隐藏文字，只留图标占位 */
+            }
+        }
+
+        .form-item label {
+            display: block;
+            margin-bottom: 8px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* 表单输入框样式 */
+        .form-item input,
+        .form-item select,
+        .form-item textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #333;
+            transition: border-color 0.3s;
+        }
+
+        /* 输入框聚焦样式 */
+        .form-item input:focus,
+        .form-item select:focus,
+        .form-item textarea:focus {
+            outline: none;
+            border-color: #2d8659; /* 主题色高亮 */
+        }
+
+        /* 按钮样式 */
+        .btn-group {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        /* 主按钮（提交） */
+        .btn-primary {
+            background-color: #2d8659;
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background-color: #25704a;
+        }
+
+        /* 次要按钮（重置） */
+        .btn-secondary {
+            background-color: #f5f5f5;
+            color: #666;
+        }
+
+        .btn-secondary:hover {
+            background-color: #e8e8e8;
+        }
     </style>
 </head>
 <body>
-  
-<h1>this is a box</h1>
+    <div class="container">
+        <!-- 侧边导航栏 -->
+        <aside class="sidebar">
+            <div class="logo">
+                <span>农业管理平台</span>
+            </div>
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active">
+                        <span>首页</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <span>专家管理</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <span>农机作业</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <span>农产品管理</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <span>数据统计</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- 主内容区域 -->
+        <main class="main-content">
+            <div class="header">
+                <div class="header-title">专家信息录入</div>
+                <div class="user-info">管理员</div>
+            </div>
+
+            <!-- 表单卡片 -->
+            <div class="form-card">
+                <div class="card-title">基本信息</div>
+                <form>
+                    <div class="form-row">
+                        <div class="form-item">
+                            <label for="expert-name">专家姓名</label>
+                            <input type="text" id="expert-name" placeholder="请输入专家姓名">
+                        </div>
+                        <div class="form-item">
+                            <label for="expert-phone">联系电话</label>
+                            <input type="tel" id="expert-phone" placeholder="请输入联系电话">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-item">
+                            <label for="expert-field">专业领域</label>
+                            <select id="expert-field">
+                                <option value="">请选择专业领域</option>
+                                <option value="种植">种植技术</option>
+                                <option value="养殖">养殖技术</option>
+                                <option value="农机">农机维护</option>
+                                <option value="植保">植物保护</option>
+                            </select>
+                        </div>
+                        <div class="form-item">
+                            <label for="expert-region">服务区域</label>
+                            <select id="expert-region">
+                                <option value="">请选择服务区域</option>
+                                <option value="北京">北京</option>
+                                <option value="上海">上海</option>
+                                <option value="广州">广州</option>
+                                <option value="武汉">武汉</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-item">
+                            <label for="expert-price">服务价格（元/小时）</label>
+                            <input type="number" id="expert-price" placeholder="请输入服务价格">
+                        </div>
+                        <div class="form-item">
+                            <label for="work-time">作业时间</label>
+                            <div style="display: flex; gap: 10px;">
+                                <label style="display: flex; align-items: center; margin: 0;">
+                                    <input type="radio" name="work-time" value="全天"> 全天
+                                </label>
+                                <label style="display: flex; align-items: center; margin: 0;">
+                                    <input type="radio" name="work-time" value="上午"> 上午
+                                </label>
+                                <label style="display: flex; align-items: center; margin: 0;">
+                                    <input type="radio" name="work-time" value="下午"> 下午
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-item" style="flex: 0 0 100%;">
+                            <label for="expert-desc">专家简介</label>
+                            <textarea id="expert-desc" rows="4" placeholder="请输入专家简介"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="btn-group">
+                        <button type="submit" class="btn btn-primary">提交</button>
+                        <button type="reset" class="btn btn-secondary">重置</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
 </body>
 </html>
