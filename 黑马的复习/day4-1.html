@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div span{
+            color: red;
+            /* 后代选择器(包括孙以后代) */
+        }
+        div>span{
+            font-size: 30px;
+        } 
+        a:link{
+            color: red;
+        }
+a:visited{
+    color: cadetblue;
+}   
+a:hover{
+            color: red;
+        }
+a:active{
+    color: beige;
+}
+     /* lvha这个顺序 */
+        h1:hover{
+            color: aqua; /* !important; */
+        }
+         
+    </style>
+</head>
+<body>
+    <span>111</span>
+    <div>
+        <span>222</span>
+        <p>
+            <span>333</span>
+        </p>
+    </div>
+    <a href="#">12345</a>
+    <h1>66666</h1>
+
+<br><br>
+<img src="./11.png" >
+</body>
+</html>
