@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>选择器</title>
+    <style>
+        *{
+            margin: 0;
+        }
+        li:first-child{
+            color: green;
+        }
+        li:last-child{
+            color: aquamarine;
+        }
+        li:nth-child(3){
+            color: aqua;
+        }
+      li:nth-child(2n){
+        color: blue;
+      }
+        li:nth-child(-n+5){
+        background-color: rgb(24, 109, 87);
+      }
+      div::before{
+        content: '111';
+display: inline-block;
+width: 100px;
+height: 100px;
+background-color: red;
+      }
+      div::after{
+        content: '333';
+      }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>1</li>
+        <li>1</li>
+        <li>1</li>
+        <li>1</li>
+        <li>1</li>
+        <li>1</li>
+        <li>1</li>
+        <li>1</li>
+        <li>1</li>
+        <li>1</li>
+        <li>1</li>
+        <li>1</li>
+        <li>1</li>
+        <li>1</li>
+        <li>1</li>
+        <li>1</li>
+        <li>1</li>
+        <li>1</li>
+        <li>1</li>
+    </ul>
+    <div>222</div>
+</body>
+</html>
