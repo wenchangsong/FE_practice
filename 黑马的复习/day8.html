@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+     img{
+        display: block;
+     }
+        .transition{
+    width: 200px;
+    height: 150px;
+    transition: all 1s;
+}
+
+.transition:hover{
+    width: 500px;
+    height: 400px;
+}
+
+.opacity {
+    width: 500px;
+    height: 500px;
+    background-color: orange;
+    opacity: 0.5; /* 仅保留最终需要的透明度值 */
+}
+    </style>
+</head>
+<body>
+    <img class="transition" src="./01.png" alt="">
+    <img class="opacity" src="./01.png" alt="">
+</body>
+</html>
