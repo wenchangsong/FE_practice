@@ -16,3 +16,21 @@ background: white; border-radius: 50%;
 把它们变成了300px×300px 的白色圆形。
 
 position: absolute; 让这两个圆形可以脱离文档流，进行精确的定位。
+
+
+
+.shortcut .wrapper {
+  display: flex;
+  justify-content: flex-end;
+  /* 使导航从末尾对齐 */
+  height: 52px;
+  /* background-color: pink; */
+}
+
+
+.search input {
+  /* 浏览器优先生效 input 标签的默认宽度，所以 flex：1 不生效 */
+  /* 解决办法：重置 input 默认宽度 → width：0 */
+  flex: 1;
+  width: 0;
+}
